@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { StorageService } from '../../service/storage.service';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-side-menu',
@@ -11,19 +10,22 @@ import { StorageService } from '../../service/storage.service';
 })
 export class SideMenuComponent {
 
-  constructor(private storage:StorageService, private router:Router){}
+  @Input() isLeftSidebarCollapsed!: boolean;
+  @Output() changeIsLeftSidebarCollapsed = new EventEmitter<boolean>();
 
-  isSideMenuCollapsed: boolean = false;
+  items = [
+    { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' },
+    { routeLink: 'alert', icon: 'fal fa-box-open', label: 'alerts' },
+    { routeLink: 'profile', icon: 'fal fa-file', label: 'profile' },
+    { routeLink: 'settings', icon: 'fal fa-cog', label: 'Settings' }
+  ];
 
-  toggleSideMenu() {
-    this.isSideMenuCollapsed = !this.isSideMenuCollapsed;
+  toggleCollapse(): void {
+    this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed);
   }
 
-  signOut() {
-    this.storage.clear().then(() => {
-      // this.permissionService.flushPermissions();
-      this.router.navigate([''])
-    });
+  closeSidenav(): void {
+    this.changeIsLeftSidebarCollapsed.emit(true);
   }
-
+  
 }

@@ -1,36 +1,32 @@
-<button class="btn btn-primary d-md-none" type="button" (click)="toggleSideMenu()" aria-expanded="!isSideMenuCollapsed"
-  aria-label="Toggle Side Menu">
-  <i class="bi bi-list"></i> Menu
-</button>
 
-<div class="side-menu position-sticky pt-3"
-  [ngClass]="{ 'd-none': isSideMenuCollapsed, 'd-block': !isSideMenuCollapsed }">
-  <ul class="nav flex-column">
-    <li class="nav-item" [routerLinkActive]="'active-link'">
-      <a class="nav-link text-primary fw-bold d-flex align-items-center" [routerLink]="['/admin/dashboard']">
-        <i class="bi bi-house-door me-2"></i>
-        <span class="fs-6 ms-1">Dashboard</span>
-      </a>
-    </li>
-    <li class="nav-item" [routerLinkActive]="'active-link'">
-      <a class="nav-link text-primary fw-bold d-flex align-items-center" [routerLink]="['/admin/alert']">
-        <i class="bi bi-bell me-2"></i>
-        <span class="fs-6 ms-1">Alerts</span>
-      </a>
-    </li>
-  </ul>
-
-  <div class="dropdown border-top mt-auto">
-    <ul class="nav flex-column">
-        <a class="nav-link text-primary fw-bold d-flex align-items-center dropdown-toggle" id="dropdownUser3"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="bi bi-person me-2"></i>
-          <span class="fs-6 ms-1">User</span>
+<div
+  class="sidenav"
+  [ngClass]="isLeftSidebarCollapsed ? 'sidenav-collapsed' : ''"
+>
+  <div class="logo-container">
+    <button class="logo" (click)="toggleCollapse()">
+      <i class="fal fa-bars"></i>
+    </button>
+    <div *ngIf="!isLeftSidebarCollapsed" class="logo-text">
+      App
+      <button class="btn-close" (click)="closeSidenav()">
+        <i class="fal fa-times close-icon"></i>
+      </button>
+    </div> 
+  </div>
+  <div class="sidenav-nav">
+    @for (item of items; track $index) {
+      <li class="sidenav-nav-item">
+        <a
+          class="sidenav-nav-link"
+          [routerLink]="item.routeLink"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <i class="sidenav-link-icon" [class]="item.icon"></i>
+          <span *ngIf="!isLeftSidebarCollapsed" class="sidenav-link-text">{{ item.label }}</span>
         </a>
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
-        <li><a class="dropdown-item" [routerLink]="['/admin/profile']">profile</a></li>
-        <li><a class="dropdown-item" (click)="signOut()">Sign out</a></li>
-      </ul>
-    </ul>
+      </li>
+    }
   </div>
 </div>

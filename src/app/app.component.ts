@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { SideMenuComponent } from "./admin/side-menu/side-menu.component";
+import { AdminLayoutComponent } from "./admin/admin-layout/admin-layout.component";
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
