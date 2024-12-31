@@ -1,0 +1,37 @@
+<div class="bg-primary min-vh-100 d-flex flex-column justify-content-between">
+    <div class="container">
+      <div class="card border-light-subtle shadow-sm" style="max-width: 400px; margin: auto; margin-top: 200px;">
+        <!-- <img src="assets/RT-Joules-logos_black.png" class="img-fluid mx-auto d-block mb-4" alt="Logo"> -->
+        <div class="row g-0">
+          <div class="card-body p-3">
+            <form [formGroup]="LogInForm" (submit)="onLogIn()">
+              <div class="row gy-3 gy-md-4 overflow-hidden">
+                <div class="col-12">
+                  <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="name@example.com" formControlName="username" required autocomplete="username">
+                </div>
+                <div class="col-12">
+                  <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
+                  <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password" formControlName="password" required autocomplete="current-password">
+                </div>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button type="submit" class="btn bsb-btn-xl btn-primary" [disabled]="LogInForm.invalid">Log in now</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Footer Text with Bootstrap classes -->
+    <div class="position-fixed bottom-0 start-0 p-3 text-white">
+      Kosine Inference Technologies LLP 2024
+    </div>
+    <div class="position-fixed bottom-0 end-0 p-3 text-white">
+        Version 1.0
+      </div>
+  </div>
+  

@@ -1,0 +1,7 @@
+/* Add this to your global styles.css or component-specific CSS file */
+@media (max-width: 768px) {
+    .navbar-responsive {
+      display: none;
+    }
+  }
+  
