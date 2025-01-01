@@ -38,7 +38,7 @@ export class AdminLayoutComponent {
 
   toggleSidebarCollapse(): void {
     this.isLeftSidebarCollapsed = !this.isLeftSidebarCollapsed;
-  }
+  } 
   
 
 }
