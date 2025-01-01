@@ -24,5 +24,21 @@ export class HttpService {
       })
     );
   }
+
+  // public refreshAccessToken(refreshToken: any) {
+  //   this.loaderService.startLoading();
+  //   const header = new HttpHeaders({
+  //     'token': refreshToken
+  //   });
+  //   return this.http.get(this.baseUrl + 'auth/refresh', {
+  //     headers: header,
+  //     responseType: 'text'
+  //   }).pipe(
+  //     timeout(this.defaultTimeout),
+  //     finalize(() => {
+  //       this.loaderService.stopLoading();
+  //     })
+  //   );
+  // }
   
 }

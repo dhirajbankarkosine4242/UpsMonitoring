@@ -16,8 +16,6 @@ export class SideMenuComponent {
   items = [
     { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' },
     { routeLink: 'alert', icon: 'fal fa-box-open', label: 'alerts' },
-    { routeLink: 'profile', icon: 'fal fa-file', label: 'profile' },
-    { routeLink: 'settings', icon: 'fal fa-cog', label: 'Settings' }
   ];
 
   toggleCollapse(): void {

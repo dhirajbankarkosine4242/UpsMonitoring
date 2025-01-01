@@ -25,7 +25,7 @@
 
 export class Global {
   static key_token = 'token';
-  // static key_refresh_token = 'refreshToken';
+  static key_refresh_token = 'refreshToken';
   // static key_role = 'role';
 }
 
