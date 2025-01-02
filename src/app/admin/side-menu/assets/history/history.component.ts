@@ -28,12 +28,12 @@ export class HistoryComponent {
   //   this.getGraph();
   // }
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['deviceId'] && this.deviceId) {
-  //     this.form.patchValue({ devId: this.deviceId });
-  //     this.getGraph();
-  //   }
-  // }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['deviceId'] && this.deviceId) {
+      this.form.patchValue({ devId: this.deviceId });
+      this.getGraph();
+    }
+  }
 
   getGraph(){
     const formData = this.form.value;
