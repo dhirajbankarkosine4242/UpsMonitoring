@@ -8,7 +8,16 @@
   background: #f4f7fa;
   padding: 3rem;
 }
-
+.navbar-body {
+  width: calc(100% - 5rem);
+  margin-left: 5rem;
+  z-index: 10;
+  position: relative;
+  top: 0;
+  transition: all 0.5s ease;
+  background: #f4f7fa;
+  /* padding: 3rem; */
+}
 .body-trimmed {
   width: calc(100% - 16.5625rem);
   margin-left: 16.5625rem;

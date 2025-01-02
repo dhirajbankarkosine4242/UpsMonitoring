@@ -66,7 +66,7 @@ export class LogInComponent {
   checkLogin(result: any) {
     const localStorage = new StorageService()
     localStorage.setItem(Global.key_token, result.accessToken);
-    this.router.navigate(['/admin/dashboard'])
+    this.router.navigate(['/admin/assets'])
     // localStorage.setItem(Global.key_refresh_token, result.refreshToken);
     // Navigate based on tenantType
     // if (this.tenantType === 'SUPER_ADMIN') {

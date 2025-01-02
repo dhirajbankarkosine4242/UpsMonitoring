@@ -2,10 +2,11 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SideMenuComponent } from "../side-menu/side-menu.component";
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [SideMenuComponent, RouterOutlet, CommonModule],
+  imports: [SideMenuComponent, RouterOutlet, CommonModule, NavbarComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })

@@ -9,29 +9,26 @@ import { RouterModule } from '@angular/router';
   styleUrl: './side-menu.component.css'
 })
 export class SideMenuComponent {
+
+  
    
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
   items = [
     {
-      routeLink: 'dashboard',
-      icon: 'fal fa-home',
+      routeLink: 'assets',
+      icon: 'fas fa-tachometer-alt',
       label: 'Dashboard',
     },
     {
-      routeLink: 'alert',
-      icon: 'fal fa-box-open',
-      label: 'Products',
+      routeLink: 'alerts',
+      icon: 'fas fa-bell',
+      label: 'Alerts',
     },
     {
-      routeLink: 'pages',
-      icon: 'fal fa-file',
-      label: 'Pages',
-    },
-    {
-      routeLink: 'settings',
-      icon: 'fal fa-cog',
-      label: 'Settings',
+      routeLink: 'practice',
+      icon: 'fas fa-bell',
+      label: 'Practice',
     },
   ];
 

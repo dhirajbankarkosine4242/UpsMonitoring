@@ -3,7 +3,14 @@
     [isLeftSidebarCollapsed]="isLeftSidebarCollapsed"
     (changeIsLeftSidebarCollapsed)="toggleSidebarCollapse()"
   ></app-side-menu>
-  <div class="body" [ngClass]="isLeftSidebarCollapsed ? '' : screenWidth > 768 ? 'body-trimmed' : 'body-md-screen'">
-    <router-outlet></router-outlet>
+
+  <!-- Navbar placed above the main content -->
+  <div class="navbar-body" [ngClass]="isLeftSidebarCollapsed ? '' : screenWidth > 768 ? 'body-trimmed' : 'body-md-screen'">    
+    <app-navbar></app-navbar> <!-- Navbar component -->
+  </div>
+
+  <!-- Main content body -->
+  <div class="body" [ngClass]="isLeftSidebarCollapsed ? '' : screenWidth > 768 ? 'body-trimmed' : 'body-md-screen'">    
+    <router-outlet></router-outlet> <!-- Content based on routing -->
   </div>
 </div>

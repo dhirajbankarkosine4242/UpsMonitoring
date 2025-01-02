@@ -1,0 +1,90 @@
+<!-- <table>
+    <tr (click)="expandRow()">
+      <td>{{ rowData.name }}</td>
+      <td>{{ rowData.description }}</td>
+    </tr>
+    <tr *ngIf="isExpanded">
+      <td colspan="2">
+        <div class="expanded-content">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link" (click)="switchTab('tab1')">Tab 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" (click)="switchTab('tab2')">Tab 2</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane" *ngIf="currentTab === 'tab1'">
+              <app-alerts></app-alerts>
+            </div>
+            <div class="tab-pane" *ngIf="currentTab === 'tab2'">
+              <app-profile></app-profile>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+</table> -->
+  <table>
+    <tr *ngFor="let data of data" (click)="expandRow(data.devId)">
+      <td>{{ data.devId }}</td>
+    </tr>
+    <tr *ngIf="isExpanded">
+      <td colspan="2">
+        <div class="expanded-content">
+          <!-- Navigation Tabs -->
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                [class.active]="currentTab === 'tab1'" 
+                (click)="switchTab('tab1')">
+                View
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                [class.active]="currentTab === 'tab2'" 
+                (click)="switchTab('tab2')">
+                Analytics
+              </a>
+            </li>
+            <li class="nav-item">
+              <a 
+                class="nav-link" 
+                [class.active]="currentTab === 'tab3'" 
+                (click)="switchTab('tab3')">
+                History
+              </a>
+            </li>
+          </ul>  
+          <div class="tab-content">
+            <div 
+              class="tab-pane fade" 
+              [class.show]="currentTab === 'tab1'" 
+              [class.active]="currentTab === 'tab1'">
+              <app-view [deviceId]="selectedDeviceId" ></app-view>
+              <!-- (onTabLoad)="handleViewLoaded($event)" -->
+            </div>
+            <div 
+              class="tab-pane fade" 
+              [class.show]="currentTab === 'tab2'" 
+              [class.active]="currentTab === 'tab2'">
+              <app-analytics [deviceId]="selectedDeviceId" ></app-analytics>
+              <!-- (onTabLoad)="handleAnalyticsLoaded($event)" -->
+            </div>
+            <div 
+              class="tab-pane fade" 
+              [class.show]="currentTab === 'tab3'" 
+              [class.active]="currentTab === 'tab3'">
+              <app-history [deviceId]="selectedDeviceId" ></app-history>
+              <!-- (onTabLoad)="handleHistoryLoaded($event)" -->
+            </div>
+          </div>          
+        </div>
+      </td>
+    </tr>
+  </table>
+  

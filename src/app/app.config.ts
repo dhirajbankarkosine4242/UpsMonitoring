@@ -6,11 +6,14 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { apiInterceptor } from './service/api.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-
 import { ToastrModule } from 'ngx-toastr';
+
+import { MatTabsModule } from '@angular/material/tabs';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideClientHydration(withEventReplay()),
@@ -20,6 +23,8 @@ export const appConfig: ApplicationConfig = {
       withInterceptorsFromDi()
     ),
     importProvidersFrom(
+      MatTabsModule,
+      
       // NgHttpLoaderModule.forRoot(),
       // NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot({
@@ -27,7 +32,7 @@ export const appConfig: ApplicationConfig = {
         positionClass: 'toast-top-right',
         preventDuplicates: true,
       })),
-    provideAnimationsAsync(),
+    provideAnimationsAsync(), provideAnimationsAsync(),
   ]
 };
 //   providers: [

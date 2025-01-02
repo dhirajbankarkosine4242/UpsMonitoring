@@ -1,3 +1,3 @@
 export const environment = {
-    baseUrl: '' //write production api here
+    baseUrl: 'https://api.kosine.tech:8990/ups/iot/data/'
 };
