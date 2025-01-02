@@ -9,23 +9,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './side-menu.component.css'
 })
 export class SideMenuComponent {
-
-  // @Input() isLeftSidebarCollapsed!: boolean;
-  // @Output() changeIsLeftSidebarCollapsed = new EventEmitter<boolean>();
-
-  // items = [
-  //   { routeLink: 'dashboard', icon: 'fal fa-home', label: 'Dashboard' },
-  //   { routeLink: 'alert', icon: 'fal fa-box-open', label: 'alerts' },
-  // ];
-
-  // toggleCollapse(): void {
-  //   this.changeIsLeftSidebarCollapsed.emit(!this.isLeftSidebarCollapsed);
-  // }
-
-  // closeSidenav(): void {
-  //   this.changeIsLeftSidebarCollapsed.emit(true);
-  // }
-  
+   
   isLeftSidebarCollapsed = input.required<boolean>();
   changeIsLeftSidebarCollapsed = output<boolean>();
   items = [
