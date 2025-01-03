@@ -25,18 +25,6 @@ const routes: Routes = [
     path: 'practice',
     component: PracticeComponent
   },
-  {
-    path: 'view',
-    component: ViewComponent
-  },
-  {
-    path: 'analytics',
-    component: AnalyticsComponent
-  },
-  {
-    path: 'history',
-    component: HistoryComponent
-  },
 ];
 
 @NgModule({

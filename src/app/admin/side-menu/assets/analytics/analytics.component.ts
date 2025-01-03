@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { HttpService } from '../../../../service/http.service';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-analytics',
@@ -12,9 +13,18 @@ export class AnalyticsComponent {
 
   data: any;
   liveDataInterval: any = null;
-  @Input() selectedDeviceId:any
+  @Input() selectedDeviceId: any
+  form: FormGroup;
 
-  constructor(private service: HttpService,) {   }
+  constructor(private service: HttpService, private fb:FormBuilder) {
+    const currentDateTime = new Date().toISOString().slice(0, 16);
+    this.form = this.fb.group({
+      devId: [[], Validators.required],
+      fields: [['inputVoltage'], Validators.required],
+      startDateTime: [currentDateTime, Validators.required],
+      endDateTime: [currentDateTime, Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.startPolling();
@@ -45,6 +55,13 @@ export class AnalyticsComponent {
       console.log('Live data:', response);
       this.data = response;
     });
+  }
+
+  download(): void {
+    this.form.get('devId')?.setValue([this.selectedDeviceId]);
+    const formData = this.form.value;
+    this.service.post('download', formData).subscribe((response) => {
+    })
   }
 
 }
