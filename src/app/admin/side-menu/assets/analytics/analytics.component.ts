@@ -12,31 +12,38 @@ export class AnalyticsComponent {
 
   data: any;
   liveDataInterval: any = null;
-  @Input() deviceId:any
-  // @Output() onTabLoad = new EventEmitter<any>();
+  @Input() selectedDeviceId:any
 
   constructor(private service: HttpService,) {   }
 
-  ngOnInit(){
-    this.onDevIdClick(this.deviceId);
+  ngOnInit() {
+    this.startPolling();
   }
 
-  onDevIdClick(id: string) {
+  ngOnDestroy() {
+    this.stopPolling();
+  }
+
+  startPolling() {
+    this.stopPolling();
+    this.getLiveData(this.selectedDeviceId);
+    this.liveDataInterval = setInterval(() => {
+      this.getLiveData(this.selectedDeviceId);
+    }, 10000);
+  }
+
+  stopPolling() {
     if (this.liveDataInterval) {
       clearInterval(this.liveDataInterval);
-    }   
-    this.service.get('asset', id).subscribe((response: any) => {
-      setTimeout(() => {
-        this.getLiveData(response.devId);
-        this.liveDataInterval = setInterval(() => {
-          this.getLiveData(response.devId);
-        }, 10000); 
-      }, 10000);
-    });
+      this.liveDataInterval = null;
+    }
   }
 
-   getLiveData(id: any) {    
+  getLiveData(id: any) {
+    if (!id) return;
     this.service.get('live', id).subscribe((response) => {
+      console.log('Live data:', response);
+      this.data = response;
     });
   }
 

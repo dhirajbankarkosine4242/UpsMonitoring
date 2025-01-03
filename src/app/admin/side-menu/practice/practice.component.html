@@ -1,31 +1,3 @@
-<!-- <table>
-    <tr (click)="expandRow()">
-      <td>{{ rowData.name }}</td>
-      <td>{{ rowData.description }}</td>
-    </tr>
-    <tr *ngIf="isExpanded">
-      <td colspan="2">
-        <div class="expanded-content">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link" (click)="switchTab('tab1')">Tab 1</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="switchTab('tab2')">Tab 2</a>
-            </li>
-          </ul>
-          <div class="tab-content">
-            <div class="tab-pane" *ngIf="currentTab === 'tab1'">
-              <app-alerts></app-alerts>
-            </div>
-            <div class="tab-pane" *ngIf="currentTab === 'tab2'">
-              <app-profile></app-profile>
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-</table> -->
   <table>
     <tr *ngFor="let data of data" (click)="expandRow(data.devId)">
       <td>{{ data.devId }}</td>
@@ -33,29 +5,28 @@
     <tr *ngIf="isExpanded">
       <td colspan="2">
         <div class="expanded-content">
-          <!-- Navigation Tabs -->
           <ul class="nav nav-tabs">
             <li class="nav-item">
               <a 
                 class="nav-link" 
-                [class.active]="currentTab === 'tab1'" 
-                (click)="switchTab('tab1')">
+                [class.active]="currentTab === 'viewTab'" 
+                (click)="switchTab('viewTab')">
                 View
               </a>
             </li>
             <li class="nav-item">
               <a 
                 class="nav-link" 
-                [class.active]="currentTab === 'tab2'" 
-                (click)="switchTab('tab2')">
+                [class.active]="currentTab === 'analyticsTab'" 
+                (click)="switchTab('analyticsTab')">
                 Analytics
               </a>
             </li>
             <li class="nav-item">
               <a 
                 class="nav-link" 
-                [class.active]="currentTab === 'tab3'" 
-                (click)="switchTab('tab3')">
+                [class.active]="currentTab === 'historyTab'" 
+                (click)="switchTab('historyTab')">
                 History
               </a>
             </li>
@@ -63,24 +34,21 @@
           <div class="tab-content">
             <div 
               class="tab-pane fade" 
-              [class.show]="currentTab === 'tab1'" 
-              [class.active]="currentTab === 'tab1'">
-              <app-view [deviceId]="selectedDeviceId" ></app-view>
-              <!-- (onTabLoad)="handleViewLoaded($event)" -->
+              [class.show]="currentTab === 'viewTab'" 
+              [class.active]="currentTab === 'viewTab'">
+              <app-view *ngIf="currentTab === 'viewTab'" [selectedDeviceId]="selectedDeviceId" ></app-view>
             </div>
             <div 
               class="tab-pane fade" 
-              [class.show]="currentTab === 'tab2'" 
-              [class.active]="currentTab === 'tab2'">
-              <app-analytics [deviceId]="selectedDeviceId" ></app-analytics>
-              <!-- (onTabLoad)="handleAnalyticsLoaded($event)" -->
+              [class.show]="currentTab === 'analyticsTab'" 
+              [class.active]="currentTab === 'analyticsTab'">
+              <app-analytics *ngIf="currentTab === 'analyticsTab'" [selectedDeviceId]="selectedDeviceId" ></app-analytics>
             </div>
             <div 
               class="tab-pane fade" 
-              [class.show]="currentTab === 'tab3'" 
-              [class.active]="currentTab === 'tab3'">
-              <app-history [deviceId]="selectedDeviceId" ></app-history>
-              <!-- (onTabLoad)="handleHistoryLoaded($event)" -->
+              [class.show]="currentTab === 'historyTab'" 
+              [class.active]="currentTab === 'historyTab'">
+              <app-history *ngIf="currentTab === 'historyTab'" [deviceId]="selectedDeviceId" ></app-history>
             </div>
           </div>          
         </div>

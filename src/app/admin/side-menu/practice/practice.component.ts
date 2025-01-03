@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HttpService } from '../../../service/http.service';
 import { AnalyticsComponent } from "../assets/analytics/analytics.component";
 import { HistoryComponent } from "../assets/history/history.component";
@@ -14,9 +14,12 @@ import { ViewComponent } from "../assets/view/view.component";
 export class PracticeComponent {
 
   isExpanded = false;
-  currentTab = 'tab1';
+  currentTab = 'viewTab';
   data:any;
   selectedDeviceId:any;
+  @ViewChild('viewTab') viewTab!: ViewComponent;
+  @ViewChild('analyticsTab') analyticsTab!: AnalyticsComponent;
+  @ViewChild('historyTab') historyTab!: HistoryComponent;
 
   constructor(private service:HttpService){};
 
@@ -37,6 +40,34 @@ export class PracticeComponent {
 
   switchTab(tab: string): void {
     this.currentTab = tab;
+    this.invokeTabMethod(tab);
+  }
+
+  invokeTabMethod(tab: string) {
+    switch (tab) {
+      case 'viewTab':
+        this.viewTab?.ngOnInit();
+        break;
+      case 'analyticsTab':
+        this.analyticsTab?.ngOnInit();
+        break;
+      // case 'historyTab':
+      //   this.historyTab?.ngOnChanges();
+      //   break;
+      case 'historyTab':
+        if (this.historyTab) {
+          const changes = {
+            deviceId: {
+              previousValue: null,
+              currentValue: this.selectedDeviceId,
+              firstChange: true,
+              isFirstChange: () => true,
+            },
+          };
+          this.historyTab.ngOnChanges(changes);
+        }
+        break;
+    }
   }
 
   getLiveData(id: any) {
@@ -44,17 +75,5 @@ export class PracticeComponent {
       console.log('Live data fetched:', response);
     });
   }
-
-  // handleViewLoaded(event: any) {
-  //   console.log('View data loaded:', event);
-  // }
-
-  // handleAnalyticsLoaded(event: any) {
-  //   console.log('Analytics data loaded:', event);
-  // }
-
-  // handleHistoryLoaded(event: any) {
-  //   console.log('History data loaded:', event);
-  // }
 
 }

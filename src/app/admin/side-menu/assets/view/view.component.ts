@@ -12,31 +12,43 @@ export class ViewComponent {
 
   data: any;
   liveDataInterval: any = null;
-  @Input() deviceId:any;
-  // @Output() onTabLoad = new EventEmitter<any>();
+  @Input() selectedDeviceId:any;
 
   constructor(private service: HttpService) { }
 
   ngOnInit(){
-    this.onDevIdClick(this.deviceId);
+    this.onDevIdClick(this.selectedDeviceId);
+    this.startPolling();
   }
 
-  onDevIdClick(id: string) {
-    if (this.liveDataInterval) {
-      clearInterval(this.liveDataInterval);
-    }   
+  onDevIdClick(id: string) {  
     this.service.get('asset', id).subscribe((response: any) => {
-      setTimeout(() => {
-        this.getLiveData(response.devId);
-        this.liveDataInterval = setInterval(() => {
-          this.getLiveData(response.devId);
-        }, 10000);
-      }, 10000);
     });
   }
 
-   getLiveData(id: any) {    
+  ngOnDestroy() {
+    this.stopPolling();
+  }
+
+  startPolling() {
+    this.stopPolling();
+    this.getLiveData(this.selectedDeviceId);
+    this.liveDataInterval = setInterval(() => {
+      this.getLiveData(this.selectedDeviceId);
+    }, 10000);
+  }
+
+  stopPolling() {
+    if (this.liveDataInterval) {
+      clearInterval(this.liveDataInterval);
+      this.liveDataInterval = null;
+    }
+  }
+
+  getLiveData(id: any) {
+    if (!id) return;
     this.service.get('live', id).subscribe((response) => {
+      this.data = response;
     });
   }
 

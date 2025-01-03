@@ -12,7 +12,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class HistoryComponent {
 
   @Input() deviceId:any;
-  // @Output() onTabLoad = new EventEmitter<any>();
   form:FormGroup;
 
   constructor(private service:HttpService, private fb:FormBuilder){
