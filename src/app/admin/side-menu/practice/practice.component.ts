@@ -17,9 +17,9 @@ export class PracticeComponent {
   currentTab = 'viewTab';
   data:any;
   selectedDeviceId:any;
-  @ViewChild('viewTab') viewTab!: ViewComponent;
-  @ViewChild('analyticsTab') analyticsTab!: AnalyticsComponent;
-  @ViewChild('historyTab') historyTab!: HistoryComponent;
+  // @ViewChild('viewTab') viewTab!: ViewComponent;
+  // @ViewChild('analyticsTab') analyticsTab!: AnalyticsComponent;
+  // @ViewChild('historyTab') historyTab!: HistoryComponent;
 
   constructor(private service:HttpService){};
 
@@ -40,40 +40,34 @@ export class PracticeComponent {
 
   switchTab(tab: string): void {
     this.currentTab = tab;
-    this.invokeTabMethod(tab);
+    // this.invokeTabMethod(tab);
   }
 
-  invokeTabMethod(tab: string) {
-    switch (tab) {
-      case 'viewTab':
-        this.viewTab?.ngOnInit();
-        break;
-      case 'analyticsTab':
-        this.analyticsTab?.ngOnInit();
-        break;
-      // case 'historyTab':
-      //   this.historyTab?.ngOnChanges();
-      //   break;
-      case 'historyTab':
-        if (this.historyTab) {
-          const changes = {
-            deviceId: {
-              previousValue: null,
-              currentValue: this.selectedDeviceId,
-              firstChange: true,
-              isFirstChange: () => true,
-            },
-          };
-          this.historyTab.ngOnChanges(changes);
-        }
-        break;
-    }
-  }
-
-  getLiveData(id: any) {
-    this.service.get('live', id).subscribe((response) => {
-      console.log('Live data fetched:', response);
-    });
-  }
+  // invokeTabMethod(tab: string) {
+  //   switch (tab) {
+  //     case 'viewTab':
+  //       this.viewTab?.ngOnInit();
+  //       break;
+  //     case 'analyticsTab':
+  //       this.analyticsTab?.ngOnInit();
+  //       break;
+  //     // case 'historyTab':
+  //     //   this.historyTab?.ngOnChanges();
+  //     //   break;
+  //     case 'historyTab':
+  //       if (this.historyTab) {
+  //         const changes = {
+  //           deviceId: {
+  //             previousValue: null,
+  //             currentValue: this.selectedDeviceId,
+  //             firstChange: true,
+  //             isFirstChange: () => true,
+  //           },
+  //         };
+  //         this.historyTab.ngOnChanges(changes);
+  //       }
+  //       break;
+  //   }
+  // }
 
 }

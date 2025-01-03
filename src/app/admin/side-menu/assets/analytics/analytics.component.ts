@@ -29,7 +29,7 @@ export class AnalyticsComponent {
     this.getLiveData(this.selectedDeviceId);
     this.liveDataInterval = setInterval(() => {
       this.getLiveData(this.selectedDeviceId);
-    }, 10000);
+    }, 5000);
   }
 
   stopPolling() {
