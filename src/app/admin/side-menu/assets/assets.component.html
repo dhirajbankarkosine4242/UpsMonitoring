@@ -1,51 +1,57 @@
-<div class="container mt-4">
-  <h2 class="text-center">UPS Device List</h2>
-  
-  <div class="row mt-3">
-    <div class="col-md-4 mb-3" *ngFor="let device of data">
-      <div class="card">
-        <div class="card-header bg-primary text-white text-center">
-          <h5>Device: {{ device.devId }}</h5>
-        </div>
-        <div class="card-body">
-          <button 
-            class="btn btn-outline-primary w-100 mb-2"
-            (click)="onDevIdClick(device.devId)">
-            View Details
-          </button>
-         
-        </div>
+<table>
+  <tr *ngFor="let data of data" (click)="expandRow(data.devId)">
+    <td>{{ data.devId }}</td>
+  </tr>
+  <tr *ngIf="isExpanded">
+    <td colspan="2">
+      <div class="expanded-content">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a 
+              class="nav-link" 
+              [class.active]="currentTab === 'viewTab'" 
+              (click)="switchTab('viewTab')">
+              View
+            </a>
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link" 
+              [class.active]="currentTab === 'analyticsTab'" 
+              (click)="switchTab('analyticsTab')">
+              Analytics
+            </a>
+          </li>
+          <li class="nav-item">
+            <a 
+              class="nav-link" 
+              [class.active]="currentTab === 'historyTab'" 
+              (click)="switchTab('historyTab')">
+              History
+            </a>
+          </li>
+        </ul>  
+        <div class="tab-content">
+          <div 
+            class="tab-pane fade" 
+            [class.show]="currentTab === 'viewTab'" 
+            [class.active]="currentTab === 'viewTab'">
+            <app-view *ngIf="currentTab === 'viewTab'" [selectedDeviceId]="selectedDeviceId" ></app-view>
+          </div>
+          <div 
+            class="tab-pane fade" 
+            [class.show]="currentTab === 'analyticsTab'" 
+            [class.active]="currentTab === 'analyticsTab'">
+            <app-analytics *ngIf="currentTab === 'analyticsTab'" [selectedDeviceId]="selectedDeviceId" ></app-analytics>
+          </div>
+          <div 
+            class="tab-pane fade" 
+            [class.show]="currentTab === 'historyTab'" 
+            [class.active]="currentTab === 'historyTab'">
+            <app-history *ngIf="currentTab === 'historyTab'" [deviceId]="selectedDeviceId" ></app-history>
+          </div>
+        </div>          
       </div>
-    </div>
-  </div>
-
-  <div *ngIf="selectedDeviceDetails" class="mt-5">
-    <div class="card">
-      <div class="card-header bg-success text-white">
-        <h4>Device Details for {{ selectedDeviceDetails.devId }}</h4>
-      </div>
-      <div class="card-body">
-        <dl class="row">
-          <dt class="col-sm-4">UPS Failure:</dt>
-          <dd class="col-sm-8">{{ selectedDeviceDetails.upsFailure }}</dd>
-
-          <dt class="col-sm-4">Input Fault Voltage:</dt>
-          <dd class="col-sm-8">{{ selectedDeviceDetails.inputFaultVoltage }}</dd>
-
-          <dt class="col-sm-4">Battery Voltage:</dt>
-          <dd class="col-sm-8">{{ selectedDeviceDetails.batVoltage }}</dd>
-
-          <dt class="col-sm-4">Output Load:</dt>
-          <dd class="col-sm-8">{{ selectedDeviceDetails.outputLoad }}</dd>
-
-          <dt class="col-sm-4">Temperature:</dt>
-          <dd class="col-sm-8">{{ selectedDeviceDetails.temperature }}°C</dd>
-          
-        </dl>
-        <button class="btn btn-warning" (click)="selectedDeviceDetails = null">Back to List</button>
-      </div>
-    </div>
-  </div>
-
-  
-</div>
+    </td>
+  </tr>
+</table>
