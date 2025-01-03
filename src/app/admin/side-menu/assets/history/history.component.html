@@ -1,1 +1,69 @@
-<p>history works!</p>
+
+ <form [formGroup]="form" class="container">
+
+    <div class="row align-items-center">
+
+      <div class="form-group col-md-3">
+        <label for="fields" class="form-label"></label>
+        <ng-select
+          [items]="listOfItems"
+          bindValue="name"
+          bindLabel="name"
+          [multiple]="true"
+          placeholder="Select Fields"
+          formControlName="fields"
+          class="w-100"
+        >
+          <ng-template>
+            <div class="d-flex justify-content-between">
+              <button type="button" class="btn btn-link" (click)="onSelectAll()">Select All</button>
+              <button type="button" class="btn btn-link" (click)="onClearAll()">Clear All</button>
+            </div>
+          </ng-template>
+        </ng-select>
+      </div>
+  
+      <div class="form-group col-md-3">
+        <label for="startDateTime" class="form-label">Start Date:</label>
+        <input
+          type="datetime-local"
+          id="startDateTime"
+          class="form-control"
+          formControlName="startDateTime"
+        />
+      </div>
+  
+      <div class="form-group col-md-3">
+        <label for="endDateTime" class="form-label">End Date:</label>
+        <input
+          type="datetime-local"
+          id="endDateTime"
+          class="form-control"
+          formControlName="endDateTime"
+        />
+      </div>
+
+      <div class="col-md-3">
+        <div class="col-md-12 d-flex justify-content-end">
+          <button
+            type="button"
+            class="btn btn-primary me-2"
+            (click)="download()"
+          >
+            Download
+          </button>
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="!form.valid"
+            (click)="onSubmit()"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+
+    </div>
+    
+  </form>
+  

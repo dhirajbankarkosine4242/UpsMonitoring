@@ -1,15 +1,16 @@
 import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
-import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideHttpClient, withFetch, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-import { apiInterceptor } from './service/api.interceptor';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
+import { routes } from './app.routes';
+import { apiInterceptor } from './service/api.interceptor';
 
 import { MatTabsModule } from '@angular/material/tabs';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +25,7 @@ export const appConfig: ApplicationConfig = {
     ),
     importProvidersFrom(
       MatTabsModule,
-      
+      NgSelectModule,
       // NgHttpLoaderModule.forRoot(),
       // NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot({
