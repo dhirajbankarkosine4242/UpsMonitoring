@@ -11,6 +11,8 @@ import { apiInterceptor } from './service/api.interceptor';
 import { MatTabsModule } from '@angular/material/tabs';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,6 +28,9 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       MatTabsModule,
       NgSelectModule,
+      TableModule,
+      ButtonModule, // Add ButtonModule to your imports
+      // RippleModule  // Add RippleModule if you are using pRipple
       // NgHttpLoaderModule.forRoot(),
       // NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot({

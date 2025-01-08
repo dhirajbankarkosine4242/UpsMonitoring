@@ -5,10 +5,12 @@ import { HttpService } from '../../../service/http.service';
 import { AnalyticsComponent } from "./analytics/analytics.component";
 import { HistoryComponent } from "./history/history.component";
 import { ViewComponent } from "./view/view.component";
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-assets',
-  imports: [FormsModule, CommonModule, HistoryComponent, AnalyticsComponent, ViewComponent],
+  imports: [FormsModule, CommonModule, HistoryComponent, AnalyticsComponent, ViewComponent, TableModule, ButtonModule],
   templateUrl: './assets.component.html',
   styleUrl: './assets.component.css'
 })
@@ -18,9 +20,6 @@ export class AssetsComponent {
   currentTab = 'viewTab';
   data:any;
   selectedDeviceId:any;
-  // @ViewChild('viewTab') viewTab!: ViewComponent;
-  // @ViewChild('analyticsTab') analyticsTab!: AnalyticsComponent;
-  // @ViewChild('historyTab') historyTab!: HistoryComponent;
 
   constructor(private service:HttpService){};
 
@@ -43,32 +42,5 @@ export class AssetsComponent {
     this.currentTab = tab;
     // this.invokeTabMethod(tab);
   }
-
-  // invokeTabMethod(tab: string) {
-  //   switch (tab) {
-  //     case 'viewTab':
-  //       this.viewTab?.ngOnInit();
-  //       break;
-  //     case 'analyticsTab':
-  //       this.analyticsTab?.ngOnInit();
-  //       break;
-  //     // case 'historyTab':
-  //     //   this.historyTab?.ngOnChanges();
-  //     //   break;
-  //     case 'historyTab':
-  //       if (this.historyTab) {
-  //         const changes = {
-  //           deviceId: {
-  //             previousValue: null,
-  //             currentValue: this.selectedDeviceId,
-  //             firstChange: true,
-  //             isFirstChange: () => true,
-  //           },
-  //         };
-  //         this.historyTab.ngOnChanges(changes);
-  //       }
-  //       break;
-  //   }
-  // }
 
 }

@@ -1,0 +1,32 @@
+.bar{
+    border-right: 1px solid #ccc;
+}
+
+.rowHeader{
+    text-align: center;
+    font-size: 14px;
+}
+
+.rowData{
+    text-align: center;
+    font-size: 12px;
+    height: 50px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .radio-group label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+  
+  .radio-group input[type="radio"] {
+    margin-right: 0.5rem;
+  }
+  

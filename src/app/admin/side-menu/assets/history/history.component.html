@@ -1,9 +1,9 @@
 
- <form [formGroup]="form" class="container">
+ <form [formGroup]="form" class="container mt-4">
 
     <div class="row align-items-center">
 
-      <div class="form-group col-md-3">
+      <!-- <div class="form-group col-md-3">
         <label for="fields" class="form-label"></label>
         <ng-select
           [items]="listOfItems"
@@ -21,40 +21,53 @@
             </div>
           </ng-template>
         </ng-select>
+      </div> -->
+
+      <div class="form-group col-md-4 col-sm-12">
+        <label for="fields" class="form-label" style="font-size: 14px;">Select Graph Flag:</label>
+        <ng-select 
+          [multiple]="true"
+          [items]="listOfItems"
+          bindLabel="name"  
+          bindValue="name"            
+          [(ngModel)]="selectedFields"  
+          formControlName="fields" >
+        </ng-select>
       </div>
-  
-      <div class="form-group col-md-3">
-        <label for="startDateTime" class="form-label">Start Date:</label>
+      
+
+      <div class="form-group col-md-3 col-sm-12">
+        <label for="startDateTime" class="form-label" style="font-size: 14px;">Start Date:</label>
         <input
           type="datetime-local"
           id="startDateTime"
-          class="form-control"
+          class="form-control small-input"
           formControlName="startDateTime"
         />
       </div>
   
-      <div class="form-group col-md-3">
-        <label for="endDateTime" class="form-label">End Date:</label>
+      <div class="form-group col-md-3 col-sm-12">
+        <label for="endDateTime" class="form-label" style="font-size: 14px;">End Date:</label>
         <input
           type="datetime-local"
           id="endDateTime"
-          class="form-control"
+          class="form-control small-input"
           formControlName="endDateTime"
         />
       </div>
 
-      <div class="col-md-3">
-        <div class="col-md-12 d-flex justify-content-end">
+      <div class="col-md-2 mt-4 col-sm-12" style="padding-left: 60px;">
+        <div class="col-md-12 d-flex justify-content-start">
           <button
             type="button"
-            class="btn btn-primary me-2"
+            class="btn btn-sm btn-primary me-2"
             (click)="download()"
           >
             Download
           </button>
           <button
             type="submit"
-            class="btn btn-success"
+            class="btn btn-sm btn-success"
             [disabled]="!form.valid"
             (click)="onSubmit()"
           >
