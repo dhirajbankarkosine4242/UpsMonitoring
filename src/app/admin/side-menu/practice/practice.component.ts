@@ -1,53 +1,63 @@
-import { Component } from '@angular/core';
-import { TableModule } from 'primeng/table';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { HttpService } from '../../../service/http.service';
+
+
+ 
+
+import { Component, ViewEncapsulation } from '@angular/core';
+import { SelectItemGroup } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { MultiSelectModule } from 'primeng/multiselect';
+
+interface GraphFlag {
+    name: string,
+    code: string
+}
 
 @Component({
   selector: 'app-practice',
-  // imports: [TableModule, HttpClientModule, ButtonModule, Ripple, Tag],
-  imports: [TableModule,ButtonModule],
+  imports: [FormsModule, MultiSelectModule],
   templateUrl: './practice.component.html',
   styleUrl: './practice.component.css',
   standalone: true,
-  // providers: [CustomerService],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ],
-  // styles: [
-  //     `:host ::ng-deep .p-rowgroup-footer td {
-  //         font-weight: 700;
-  //     }
-
-  //     :host ::ng-deep .p-rowgroup-header {
-  //         span {
-  //             font-weight: 700;
-  //         }
-
-  //         .p-row-toggler {
-  //             vertical-align: middle;
-  //             margin-right: .25rem;
-  //         }
-  //     }`
-  // ],
 })
 export class PracticeComponent {
-  
-    data:any;
-    selectedDeviceId:any;
-  
-    constructor(private service:HttpService){};
-  
-    ngOnInit(): void {
-      this.getAssetsList()
-    }
-    
-    getAssetsList() {
-      this.service.get('assets').subscribe((response: any[]) => {
-        this.data = response;
-      });
-    }
 
+  groupedFields!: SelectItemGroup[];
 
+  selectedFields!: GraphFlag[];
+
+    constructor() {
+        this.groupedFields = [
+            {
+                label: 'Germany',
+                value: 'de',
+                items: [
+                    { label: 'Berlin', value: 'Berlin' },
+                    { label: 'Frankfurt', value: 'Frankfurt' },
+                    { label: 'Hamburg', value: 'Hamburg' },
+                    { label: 'Munich', value: 'Munich' }
+                ]
+            },
+            {
+                label: 'USA',
+                value: 'us',
+                items: [
+                    { label: 'Chicago', value: 'Chicago' },
+                    { label: 'Los Angeles', value: 'Los Angeles' },
+                    { label: 'New York', value: 'New York' },
+                    { label: 'San Francisco', value: 'San Francisco' }
+                ]
+            },
+            {
+                label: 'Japan',
+                value: 'jp',
+                items: [
+                    { label: 'Kyoto', value: 'Kyoto' },
+                    { label: 'Osaka', value: 'Osaka' },
+                    { label: 'Tokyo', value: 'Tokyo' },
+                    { label: 'Yokohama', value: 'Yokohama' }
+                ]
+            }
+        ];
+    }
 }
+ 

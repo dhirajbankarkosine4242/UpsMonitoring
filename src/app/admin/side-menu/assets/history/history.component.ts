@@ -18,6 +18,7 @@ export class HistoryComponent {
   @Input() deviceId: any;
   form: FormGroup;
   selectedFields: string[] = [];  // Store selected field names
+  // isDropdownOpen = false; // Tracks dropdown state
 
   constructor(private service: HttpService, private fb: FormBuilder) {
     const currentDateTime = new Date().toISOString().slice(0, 16);
@@ -62,6 +63,15 @@ export class HistoryComponent {
     this.service.post('download', formData).subscribe((response) => {
     })
   }
+
+  // toggleDropdown(): void {
+  //   this.isDropdownOpen = !this.isDropdownOpen; // Toggle dropdown visibility
+  // }
+
+  // onChange(): void {
+  //   // Optional: Add any logic to handle when selection changes
+  //   console.log('Selected Fields:', this.selectedFields);
+  // }
 
   // onClearAll() {
   //   const selected = this.listOfItems.map((item) => item.id);
