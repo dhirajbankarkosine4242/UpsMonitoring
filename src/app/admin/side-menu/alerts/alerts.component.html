@@ -1,1 +1,34 @@
-<p>alert page</p>
+<p-table [value]="data" [paginator]="true" [rowExpandMode]="'single'" [rows]="10">
+      
+    <ng-template pTemplate="header">
+      <tr class="rowHeader">
+        <th class="bar" style="text-align: center">Location</th>
+        <th class="bar" style="text-align: center">Device ID</th>
+        <th class="bar" style="text-align: center">Message</th>
+        <th class="bar" style="text-align: center">State</th>
+        <th class="bar" style="text-align: center">Alert Date</th>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+      <tr class="rowData" style="width: 100px;" (click)="toggleRowExpansion(rowData)"> <!-- Toggle Button -->
+        <td style="text-align: center">{{ rowData.siteLoc }}</td>
+        <td style="text-align: center">{{ rowData.devId }}</td>
+        <td style="text-align: center">{{ rowData.message }}</td>
+        <td style="text-align: center">{{ rowData.state }}</td>
+        <td style="text-align: center">{{ rowData.timestamp* 1000 | date: 'MM/dd/yyyy HH:mm:ss' }}</td>
+      </tr>
+  
+      <!-- <tr *ngIf="rowData.expanded">
+        <td colspan="12">
+          <div class="col-md-2 col-sm-2">
+            <div class="card center">
+                <p class="mt-1 mb-0">Message: {{rowData.message}}</p>
+                <hr>
+                <p class="">State: {{rowData.state}}</p>
+            </div>
+          </div>
+        </td>
+      </tr> -->
+    </ng-template>
+  </p-table>  

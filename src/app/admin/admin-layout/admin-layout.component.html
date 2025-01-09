@@ -10,7 +10,16 @@
   </div>
 
   <!-- Main content body -->
-  <div class="body" [ngClass]="isLeftSidebarCollapsed ? '' : screenWidth > 768 ? 'body-trimmed' : 'body-md-screen'">    
+  <div class="body" [ngClass]="isLeftSidebarCollapsed ? '' : screenWidth > 768 ? 'body-trimmed' : 'body-md-screen'">   
+    <ng-http-loader 
+    [backdrop]="false"
+    [backgroundColor]="'#0000fe'"
+    [debounceDelay]="100"
+    [extraDuration]="300"
+    [minDuration]="300"
+    [backdropBackgroundColor]="'#777777'"
+    [spinner]="spinkit.skWave">
+</ng-http-loader>
     <router-outlet></router-outlet> <!-- Content based on routing -->
   </div>
 </div>

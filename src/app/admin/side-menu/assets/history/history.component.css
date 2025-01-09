@@ -5,4 +5,7 @@
   .small-size {
     height: 35px; /* Adjust the height */
   }
-  
+  .p-multiselect {
+    position: relative;
+    z-index: 9999;  /* Adjust this value as needed */
+  }

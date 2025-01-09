@@ -8,6 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { apiInterceptor } from './service/api.interceptor';
 
+import { NgHttpLoaderComponent, pendingRequestsInterceptor$ } from 'ng-http-loader';
 import { MatTabsModule } from '@angular/material/tabs';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -25,7 +26,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes), 
     provideClientHydration(withEventReplay()),
       provideHttpClient(
-      withInterceptors([apiInterceptor]),
+      withInterceptors([apiInterceptor,pendingRequestsInterceptor$]),
       withFetch(),
       withInterceptorsFromDi()
     ),
@@ -36,7 +37,6 @@ export const appConfig: ApplicationConfig = {
       ButtonModule, 
       RippleModule, 
       MultiSelectModule,
-      // NgHttpLoaderModule.forRoot(),
       // NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot({
         timeOut: 3000,

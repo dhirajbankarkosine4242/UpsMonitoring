@@ -40,14 +40,11 @@ export class AssetsComponent {
   // }
 
   toggleRowExpansion(rowData: any): void {
-    // Collapse previously expanded row if it's not the same row
          if (this.expandedRow && this.expandedRow !== rowData) {
             this.expandedRow.expanded = false;
         }
-
-  // Toggle the expanded state for the clicked row
-  rowData.expanded = !rowData.expanded;
-  this.expandedRow = rowData.expanded ? rowData : null;
+        rowData.expanded = !rowData.expanded;
+        this.expandedRow = rowData.expanded ? rowData : null;
   }
 
   switchTab(tab: string): void {

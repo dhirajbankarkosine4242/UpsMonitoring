@@ -140,8 +140,9 @@
       </ng-template>
       
     </p-table> -->
-    
+  
     <p-table [value]="data" [paginator]="true" [rowExpandMode]="'single'" [rows]="10">
+      
       <ng-template pTemplate="header">
         <tr class="rowHeader">
           <th class="bar" style="text-align: center">Location</th>
@@ -150,7 +151,7 @@
           <th class="bar" style="text-align: center">Input Fault Voltage</th>
           <th class="bar" style="text-align: center">Bat Silence</th>
           <th class="bar" style="text-align: center">Bat Voltage</th>
-          <th class="bar" style="text-align: center">Time Stamps</th>
+          <th class="bar" style="text-align: center">Time</th>
           <th class="bar" style="text-align: center">UPS Test Active</th>
           <th class="bar" style="text-align: center">Output Load</th>
           <th class="bar" style="text-align: center">Output Voltage</th>
@@ -173,7 +174,7 @@
           <td style="text-align: center">{{ rowData.inputFaultVoltage }}</td>
           <td style="text-align: center">{{ rowData.batSilence }}</td>
           <td style="text-align: center">{{ rowData.batVoltage }}</td>
-          <td style="text-align: center">{{ rowData.timestamp }}</td>
+          <td style="text-align: center">{{ rowData.timestamp* 1000 | date: 'MM/dd/yyyy HH:mm:ss' }}</td>
           <td style="text-align: center">{{ rowData.upsTestActive }}</td>
           <td style="text-align: center">{{ rowData.outputLoad }}</td>
           <td style="text-align: center">{{ rowData.outputVoltage }}</td>
@@ -187,7 +188,6 @@
           <td style="text-align: center">{{ rowData.temperature }}</td>
         </tr>
     
-        <!-- Expanded Row Content -->
         <tr *ngIf="rowData.expanded">
           <td colspan="12">
             <div class="expanded-content">
@@ -261,5 +261,4 @@
           </td>
         </tr>
       </ng-template>
-    </p-table>
-    
+    </p-table>  

@@ -12,7 +12,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
   imports: [CommonModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, NgSelectModule, FormsModule, MultiSelectModule],
   templateUrl: './history.component.html',
   styleUrl: './history.component.css',
-  schemas: [NO_ERRORS_SCHEMA]
+  
 })
 export class HistoryComponent {
 

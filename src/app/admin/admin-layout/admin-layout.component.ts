@@ -3,15 +3,18 @@ import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { SideMenuComponent } from "../side-menu/side-menu.component";
 import { NavbarComponent } from "../navbar/navbar.component";
+import { NgHttpLoaderComponent, Spinkit } from 'ng-http-loader';
 
 @Component({
   selector: 'app-admin-layout',
-  imports: [SideMenuComponent, RouterOutlet, CommonModule, NavbarComponent],
+  imports: [SideMenuComponent, RouterOutlet, CommonModule, NavbarComponent, NgHttpLoaderComponent],
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })
 export class AdminLayoutComponent {
 
+  public spinkit = Spinkit;
+  
   isLeftSidebarCollapsed: boolean = false;
   screenWidth: number = 0;
   isBrowser: boolean;

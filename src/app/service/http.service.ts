@@ -16,16 +16,32 @@ export class HttpService {
   constructor(private http: HttpClient, private loaderService: LoaderService) { }
 
   post(url: string, data: any, p0?: { headers: HttpHeaders; responseType: string; }): Observable<any> {
-    return this.http.post(`${this.baseUrl}${url}`, data);
+    this.loaderService.startLoading();
+    return this.http.post(`${this.baseUrl}${url}`, data).pipe(
+      finalize(() => {
+        this.loaderService.stopLoading();  // Stop loading after request completes
+      })
+    );
   }
 
   get(url: string, id?: any): Observable<any[]> {
+    this.loaderService.startLoading(); 
+  
+    let request: Observable<any>;
+  
     if (id) {
-      return this.http.get<any>(`${this.baseUrl}${url}/${id}`);
+      request = this.http.get<any>(`${this.baseUrl}${url}/${id}`);
     } else {
-      return this.http.get<any>(`${this.baseUrl}${url}`);
+      request = this.http.get<any>(`${this.baseUrl}${url}`);
     }
+  
+    return request.pipe(
+      finalize(() => {
+        this.loaderService.stopLoading();  // Stop loading after request completes
+      })
+    );
   }
+  
 
   login(credentials: any): Observable<any> {
     this.loaderService.startLoading();
