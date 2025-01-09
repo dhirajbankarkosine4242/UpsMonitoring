@@ -16,9 +16,10 @@ import { ButtonModule } from 'primeng/button';
 })
 export class AssetsComponent {
 
-  isExpanded = false;
+  // isExpanded = false;
   currentTab = 'viewTab';
-  data:any;
+  data:any[]=[];
+  expandedRow: any = null;
   selectedDeviceId:any;
 
   constructor(private service:HttpService){};
@@ -33,14 +34,24 @@ export class AssetsComponent {
     });
   }
 
-  expandRow(devId:any): void {
-    this.isExpanded = !this.isExpanded;
-    this.selectedDeviceId = devId;
+  // expandRow(devId:any): void {
+  //   this.isExpanded = !this.isExpanded;
+  //   this.selectedDeviceId = devId;
+  // }
+
+  toggleRowExpansion(rowData: any): void {
+    // Collapse previously expanded row if it's not the same row
+         if (this.expandedRow && this.expandedRow !== rowData) {
+            this.expandedRow.expanded = false;
+        }
+
+  // Toggle the expanded state for the clicked row
+  rowData.expanded = !rowData.expanded;
+  this.expandedRow = rowData.expanded ? rowData : null;
   }
 
   switchTab(tab: string): void {
     this.currentTab = tab;
-    // this.invokeTabMethod(tab);
   }
 
 }

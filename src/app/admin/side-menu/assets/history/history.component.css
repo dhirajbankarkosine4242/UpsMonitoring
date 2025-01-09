@@ -2,3 +2,7 @@
     font-size: 12px;
     padding: 5px 10px;
   }
+  .small-size {
+    height: 35px; /* Adjust the height */
+  }
+  

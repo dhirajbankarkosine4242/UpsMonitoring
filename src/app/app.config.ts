@@ -13,6 +13,10 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+import { RippleModule } from 'primeng/ripple';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,8 +33,9 @@ export const appConfig: ApplicationConfig = {
       MatTabsModule,
       NgSelectModule,
       TableModule,
-      ButtonModule, // Add ButtonModule to your imports
-      // RippleModule  // Add RippleModule if you are using pRipple
+      ButtonModule, 
+      RippleModule, 
+      MultiSelectModule,
       // NgHttpLoaderModule.forRoot(),
       // NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot({
@@ -38,7 +43,13 @@ export const appConfig: ApplicationConfig = {
         positionClass: 'toast-top-right',
         preventDuplicates: true,
       })),
-    provideAnimationsAsync(), provideAnimationsAsync(),
+    provideAnimationsAsync(),
+    provideAnimationsAsync(),
+        providePrimeNG({
+            theme: {
+                preset: Aura
+            }
+        })
   ]
 };
 //   providers: [

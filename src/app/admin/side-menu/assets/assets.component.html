@@ -1,145 +1,6 @@
 
-  <!-- <p-table
-    [value]="data"
-    [tableStyle]="{ 'min-width': '70rem' }"
-    [rowExpandMode]="'single'"
-    dataKey="devId"
-  >
-    
-    <ng-template pTemplate="header">
-      <tr>        
-        <th >Actions</th>
-        <th >Location</th>
-        <th >Device ID</th>
-        <th >UPS Failure</th>
-        <th >Input Fault Voltage</th>
-        <th >Bat Silence</th>        
-        <th >Bat Voltage</th>
-        <th >Time Stamps</th>
-        <th >UPS Test Active</th>
-        <th >Output Voltage</th>
-        <th >Input Frequency</th>
-        <th >AC Input Failure</th>
-        <th >Bat Low</th>
-        <th>UPS Type</th>
-        <th >Input Voltage</th>
-        <th >UPS Bypass</th>
-        <th >UPS Shutdown Active</th>
-        <th>Temprature</th>
-      </tr>
-    </ng-template>
-
-    
-    <ng-template pTemplate="body" let-rowData>
-      
-      <tr>
-        <td><button
-          type="button"
-          pButton
-          pRipple
-          [pRowToggler]="rowData"
-          icon="pi pi-chevron-right"
-          class="p-button-rounded p-button-text"
-          ></button></td>          
-        <td>Pune</td>
-        <td>{{ rowData.devId }}</td>
-        <td>{{ rowData.upsFailure }}</td>       
-        <td>{{ rowData.inputFaultVoltage }}</td> 
-        <td>{{ rowData.batSilence }}</td> 
-        <td>{{ rowData.batVoltage }}</td>  
-        <td>{{ rowData.timestamp }}</td> 
-        <td>{{ rowData.upsTestActive }}</td> 
-        <td>{{ rowData.outputLoad }}</td> 
-        <td>{{ rowData.outputVoltage }}</td> 
-        <td>{{ rowData.inputFreq }}</td> 
-        <td>{{ rowData.acInputFailure }}</td> 
-        <td>{{ rowData.batLow }}</td> 
-        <td>{{ rowData.upsType }}</td> 
-        <td>{{ rowData.inputVoltage }}</td> 
-        <td>{{ rowData.upsBypass }}</td> 
-        <td>{{ rowData.upsShutdownActive }}</td> 
-        <td>{{ rowData.temperature }}</td> 
-      </tr>
-   
-    </ng-template>
-
-    
-    <ng-template pTemplate="rowexpansion" let-rowData>
-      <tr>
-        <td colspan="4">
-          <div class="expanded-content">
-            
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  [class.active]="currentTab === 'viewTab'"
-                  (click)="switchTab('viewTab')"
-                >
-                  View
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  [class.active]="currentTab === 'analyticsTab'"
-                  (click)="switchTab('analyticsTab')"
-                >
-                  Analytics
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link"
-                  [class.active]="currentTab === 'historyTab'"
-                  (click)="switchTab('historyTab')"
-                >
-                  History
-                </a>
-              </li>
-            </ul>
-
-            
-            <div class="tab-content">
-              <div
-                class="tab-pane fade"
-                [class.show]="currentTab === 'viewTab'"
-                [class.active]="currentTab === 'viewTab'"
-              >
-                <app-view
-                  *ngIf="currentTab === 'viewTab'"
-                  [selectedDeviceId]="rowData.devId"
-                ></app-view>
-              </div>
-              <div
-                class="tab-pane fade"
-                [class.show]="currentTab === 'analyticsTab'"
-                [class.active]="currentTab === 'analyticsTab'"
-              >
-                <app-analytics
-                  *ngIf="currentTab === 'analyticsTab'"
-                  [selectedDeviceId]="rowData.devId"
-                ></app-analytics>
-              </div>
-              <div
-                class="tab-pane fade"
-                [class.show]="currentTab === 'historyTab'"
-                [class.active]="currentTab === 'historyTab'"
-              >
-                <app-history
-                  *ngIf="currentTab === 'historyTab'"
-                  [deviceId]="rowData.devId"
-                ></app-history>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </ng-template>
-  </p-table> -->
-
  <h4 class="mb-4">UPS Monitoring Details</h4>
-    <p-table
+    <!-- <p-table
       class="p-0"
       [value]="data"
       [tableStyle]="{ 'min-width': '70rem' }"
@@ -171,7 +32,7 @@
         </tr>
       </ng-template>  
       
-      <ng-template pTemplate="body" let-rowData >
+      <ng-template pTemplate="body" let-rowData let-expanded>
         <tr class="rowData" style="width: 100px;">
           <td>
             <button
@@ -179,7 +40,7 @@
               pButton
               pRipple
               [pRowToggler]="rowData"
-              icon="pi pi-chevron-right"
+              [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
               class="p-button-rounded p-button-text"
             ></button>
           </td>
@@ -209,16 +70,6 @@
           <td colspan="18">
             <div class="expanded-content">
               <div class="radio-group">
-              <!-- <ul class="nav nav-tabs"> -->
-                <!-- <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    [class.active]="currentTab === 'viewTab'"
-                    (click)="switchTab('viewTab')"
-                  >
-                    View
-                  </a>
-                </li> -->
                 <label>
                   <input
                     type="radio"
@@ -229,15 +80,6 @@
                   />
                   View
                 </label>
-                <!-- <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    [class.active]="currentTab === 'analyticsTab'"
-                    (click)="switchTab('analyticsTab')"
-                  >
-                    Analytics
-                  </a>
-                </li> -->
                 <label>
                   <input
                     type="radio"
@@ -248,15 +90,6 @@
                   />
                   Analytics
                 </label>
-                <!-- <li class="nav-item">
-                  <a
-                    class="nav-link"
-                    [class.active]="currentTab === 'historyTab'"
-                    (click)="switchTab('historyTab')"
-                  >
-                    History
-                  </a>
-                </li> -->
                 <label>
                   <input
                     type="radio"
@@ -268,7 +101,6 @@
                   History
                 </label>
               </div>
-              <!-- </ul> -->
   
               <div class="tab-content">
                 <div
@@ -307,4 +139,127 @@
         </tr>
       </ng-template>
       
+    </p-table> -->
+    
+    <p-table [value]="data" [paginator]="true" [rowExpandMode]="'single'" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr class="rowHeader">
+          <th class="bar" style="text-align: center">Location</th>
+          <th class="bar" style="text-align: center">Device ID</th>
+          <th class="bar" style="text-align: center">UPS Failure</th>
+          <th class="bar" style="text-align: center">Input Fault Voltage</th>
+          <th class="bar" style="text-align: center">Bat Silence</th>
+          <th class="bar" style="text-align: center">Bat Voltage</th>
+          <th class="bar" style="text-align: center">Time Stamps</th>
+          <th class="bar" style="text-align: center">UPS Test Active</th>
+          <th class="bar" style="text-align: center">Output Load</th>
+          <th class="bar" style="text-align: center">Output Voltage</th>
+          <th class="bar" style="text-align: center">Input Frequency</th>
+          <th class="bar" style="text-align: center">AC Input Failure</th>
+          <th class="bar" style="text-align: center">Bat Low</th>
+          <th class="bar" style="text-align: center">UPS Type</th>
+          <th class="bar" style="text-align: center">Input Voltage</th>
+          <th class="bar" style="text-align: center">UPS Bypass</th>
+          <th class="bar" style="text-align: center">UPS Shutdown Active</th>
+          <th style="text-align: center">Temperature</th>
+        </tr>
+      </ng-template>
+    
+      <ng-template pTemplate="body" let-rowData let-i="rowIndex">
+        <tr class="rowData" style="width: 100px;" (click)="toggleRowExpansion(rowData)"> <!-- Toggle Button -->
+          <td style="text-align: center">Pune</td>
+          <td style="text-align: center">{{ rowData.devId }}</td>
+          <td style="text-align: center">{{ rowData.upsFailure }}</td>
+          <td style="text-align: center">{{ rowData.inputFaultVoltage }}</td>
+          <td style="text-align: center">{{ rowData.batSilence }}</td>
+          <td style="text-align: center">{{ rowData.batVoltage }}</td>
+          <td style="text-align: center">{{ rowData.timestamp }}</td>
+          <td style="text-align: center">{{ rowData.upsTestActive }}</td>
+          <td style="text-align: center">{{ rowData.outputLoad }}</td>
+          <td style="text-align: center">{{ rowData.outputVoltage }}</td>
+          <td style="text-align: center">{{ rowData.inputFreq }}</td>
+          <td style="text-align: center">{{ rowData.acInputFailure }}</td>
+          <td style="text-align: center">{{ rowData.batLow }}</td>
+          <td style="text-align: center">{{ rowData.upsType }}</td>
+          <td style="text-align: center">{{ rowData.inputVoltage }}</td>
+          <td style="text-align: center">{{ rowData.upsBypass }}</td>
+          <td style="text-align: center">{{ rowData.upsShutdownActive }}</td>
+          <td style="text-align: center">{{ rowData.temperature }}</td>
+        </tr>
+    
+        <!-- Expanded Row Content -->
+        <tr *ngIf="rowData.expanded">
+          <td colspan="12">
+            <div class="expanded-content">
+              <div class="radio-group">
+                <label>
+                  <input
+                    type="radio"
+                    name="tabOptions-{{ rowData.devId }}"
+                    value="viewTab"
+                    [(ngModel)]="currentTab"
+                    (change)="switchTab('viewTab')"
+                  />
+                  View
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="tabOptions-{{ rowData.devId }}"
+                    value="analyticsTab"
+                    [(ngModel)]="currentTab"
+                    (change)="switchTab('analyticsTab')"
+                  />
+                  Analytics
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    name="tabOptions-{{ rowData.devId }}"
+                    value="historyTab"
+                    [(ngModel)]="currentTab"
+                    (change)="switchTab('historyTab')"
+                  />
+                  History
+                </label>
+              </div>
+    
+              <div class="tab-content">
+                <div
+                  class="tab-pane fade mb-5 mt-3"
+                  style="margin-right: 0; padding-right: 0;"
+                  [class.show]="currentTab === 'viewTab'"
+                  [class.active]="currentTab === 'viewTab'"
+                >
+                  <app-view
+                    *ngIf="currentTab === 'viewTab'"
+                    [selectedDeviceId]="rowData.devId"
+                  ></app-view>
+                </div>
+                <div
+                  class="tab-pane fade mb-5 mt-3"
+                  [class.show]="currentTab === 'analyticsTab'"
+                  [class.active]="currentTab === 'analyticsTab'"
+                >
+                  <app-analytics
+                    *ngIf="currentTab === 'analyticsTab'"
+                    [selectedDeviceId]="rowData.devId"
+                  ></app-analytics>
+                </div>
+                <div
+                  class="tab-pane fade mb-5 mt-3"
+                  [class.show]="currentTab === 'historyTab'"
+                  [class.active]="currentTab === 'historyTab'"
+                >
+                  <app-history
+                    *ngIf="currentTab === 'historyTab'"
+                    [deviceId]="rowData.devId"
+                  ></app-history>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
     </p-table>
+    

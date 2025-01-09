@@ -1,17 +1,14 @@
 
-
- 
-
-import { Component, ViewEncapsulation } from '@angular/core';
-import { SelectItemGroup } from 'primeng/api';
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-interface GraphFlag {
-    name: string,
-    code: string
+interface City {
+  name: string,
+  code: string
 }
-
 @Component({
   selector: 'app-practice',
   imports: [FormsModule, MultiSelectModule],
@@ -21,43 +18,21 @@ interface GraphFlag {
 })
 export class PracticeComponent {
 
-  groupedFields!: SelectItemGroup[];
+  cities!: City[];
 
-  selectedFields!: GraphFlag[];
+    selectedCities!: City[];
 
-    constructor() {
-        this.groupedFields = [
-            {
-                label: 'Germany',
-                value: 'de',
-                items: [
-                    { label: 'Berlin', value: 'Berlin' },
-                    { label: 'Frankfurt', value: 'Frankfurt' },
-                    { label: 'Hamburg', value: 'Hamburg' },
-                    { label: 'Munich', value: 'Munich' }
-                ]
-            },
-            {
-                label: 'USA',
-                value: 'us',
-                items: [
-                    { label: 'Chicago', value: 'Chicago' },
-                    { label: 'Los Angeles', value: 'Los Angeles' },
-                    { label: 'New York', value: 'New York' },
-                    { label: 'San Francisco', value: 'San Francisco' }
-                ]
-            },
-            {
-                label: 'Japan',
-                value: 'jp',
-                items: [
-                    { label: 'Kyoto', value: 'Kyoto' },
-                    { label: 'Osaka', value: 'Osaka' },
-                    { label: 'Tokyo', value: 'Tokyo' },
-                    { label: 'Yokohama', value: 'Yokohama' }
-                ]
-            }
+    ngOnInit() {
+        this.cities = [
+            { name: 'New York', code: 'NY' },
+            { name: 'Rome', code: 'RM' },
+            { name: 'London', code: 'LDN' },
+            { name: 'Istanbul', code: 'IST' },
+            { name: 'Paris', code: 'PRS' }
         ];
     }
+
+    
+    
 }
  

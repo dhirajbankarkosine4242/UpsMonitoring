@@ -1,9 +1,3 @@
-<div class="card flex justify-center col-sm-12 col-md-4">
-    <p-multiselect [options]="groupedFields" [group]="true" [(ngModel)]="selectedFields" placeholder="Select Cities" scrollHeight="250px" display="chip" >
-        <ng-template let-group #group>
-            <div class="flex items-center">                
-                <span>{{ group.label }}</span>
-            </div>
-        </ng-template>
-    </p-multiselect>
+<div class="col-sm-3 col-md-4">
+    <p-multiselect [options]="cities" [(ngModel)]="selectedCities" class="ng-dirty ng-invalid" optionLabel="name" [maxSelectedLabels]="3" styleClass="w-full md:w-80" />
 </div>
