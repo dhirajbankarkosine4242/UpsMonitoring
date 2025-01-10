@@ -1,0 +1,14 @@
+/* Battery Color Classes */
+.battery-low {
+    color: red;
+  }
+  .battery-medium {
+    color: orange;
+  }
+  .battery-full {
+    color: green;
+  }
+  .battery-unknown {
+    color: gray;
+  }
+  
