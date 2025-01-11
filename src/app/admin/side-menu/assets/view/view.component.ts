@@ -63,12 +63,11 @@ export class ViewComponent {
   }
 
   updateBatteryStatus(voltage: number | null): void {
-    if (voltage === null) {
+    if (voltage === null || 0) {
       this.batteryIcon = 'bi bi-battery';
       this.batteryClass = 'battery-unknown';
-      return;
     }  
-    if (voltage <= 20) {
+     else if (voltage <= 20) {
       this.batteryIcon = 'bi bi-battery';
       this.batteryClass = 'battery-low';
     } else if (voltage > 20 && voltage <= 70) {

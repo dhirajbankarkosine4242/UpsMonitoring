@@ -7,6 +7,8 @@ import { HistoryComponent } from "./history/history.component";
 import { ViewComponent } from "./view/view.component";
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
+import Swal from 'sweetalert2';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-assets',
@@ -21,18 +23,75 @@ export class AssetsComponent {
   data:any[]=[];
   expandedRow: any = null;
   selectedDeviceId:any;
+  liveDataInterval: any = null;
 
-  constructor(private service:HttpService){};
+  constructor(private service:HttpService, private toastr: ToastrService){};
 
   ngOnInit(): void {
-    this.getAssetsList()
+    // this.startPolling();
+    this.getAssetsList();
+  }
+
+  startPolling() {
+    this.stopPolling();
+    this.getAssetsListConstantly();
+    this.liveDataInterval = setInterval(() => {
+      this.getAssetsListConstantly();
+    }, 60000);
+  }
+
+  stopPolling() {
+    if (this.liveDataInterval) {
+      clearInterval(this.liveDataInterval);
+      this.liveDataInterval = null;
+    }
   }
   
-  getAssetsList() {
-    this.service.get('assets').subscribe((response: any[]) => {
-      this.data = response;
+  getAssetsListConstantly() {
+    this.service.get('assets').subscribe((response: any[]) => {  
+      const batVoltage = this.data.filter(asset => asset.batVoltage > 40);  
+      if (batVoltage.length > 0) {
+        batVoltage.forEach((asset, index) => {
+          setTimeout(() => {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'warning',
+              title: `Asset ID: ${asset.devId} has a high battery Voltage!`,
+              text: `Battery Voltage: ${asset.batVoltage}`,
+              timer: 3000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+            });
+          }, index * 3000); // Add a 500ms delay for each toast
+        });
+      }
     });
   }
+
+  getAssetsList(){
+    this.service.get('assets').subscribe((response: any[]) => {
+      this.data = response;
+      const batVoltage = this.data.filter(asset => asset.batVoltage > 40);  
+      if (batVoltage.length > 0) {
+        batVoltage.forEach((asset, index) => {
+          setTimeout(() => {
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              icon: 'warning',
+              title: `Asset ID: ${asset.devId} has a high battery Voltage!`,
+              text: `Battery Voltage: ${asset.batVoltage}`,
+              timer: 3000,
+              timerProgressBar: true,
+              showConfirmButton: false,
+            });
+          }, index * 3000);
+        });
+      }
+    });
+  }
+  
 
   // expandRow(devId:any): void {
   //   this.isExpanded = !this.isExpanded;

@@ -1,4 +1,12 @@
-<div class="card text-center col-md-3 col-sm-3">
+<div class="d-flex align-items-center justify-content-center my-3">
+  <hr class="flex-grow-1 me-2" />
+  <span class="fw-bold">LIVE DATA</span>
+  <hr class="flex-grow-1 ms-2" />
+</div>
+
+<div class="row">
+
+  <div class="card text-center col-3">
     <div class="card-header">
       Live Battery Status
     </div>
@@ -9,6 +17,14 @@
       </p>
     </div>
     <div class="card-footer text-muted">
-      Updated every 5 seconds
+      <ng-container *ngIf="batVoltage === null || batVoltage === 0; else updatedFooter">
+        Battery Status is critical
+      </ng-container>
+      <ng-template #updatedFooter>
+        Battery Status is ok
+      </ng-template>      
     </div>
   </div>
+
+
+</div>
